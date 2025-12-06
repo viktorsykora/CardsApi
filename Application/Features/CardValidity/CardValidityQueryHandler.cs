@@ -6,17 +6,17 @@ namespace Application.Features.CardValidity
 {
     internal class CardValidityQueryHandler : IRequestHandler<CardValidityQuery, CardValidityResponse>
     {
-        private readonly ICardProvider _cardApiClient;
+        private readonly ICardProvider _cardProvider;
 
-        public CardValidityQueryHandler(ICardProvider cardApiClient)
+        public CardValidityQueryHandler(ICardProvider cardProvider)
         {
-            _cardApiClient = cardApiClient;
+            _cardProvider = cardProvider;
         }
 
         public async Task<CardValidityResponse> Handle(CardValidityQuery request, CancellationToken cancellationToken)
         {
-            var stateDescriptionTask = _cardApiClient.GetCardStatusDescriptionAsync(request.CardNumber);
-            var validityTask = _cardApiClient.GetCardValidityAsync(request.CardNumber);
+            var stateDescriptionTask = _cardProvider.GetCardStatusDescriptionAsync(request.CardNumber);
+            var validityTask = _cardProvider.GetCardValidityAsync(request.CardNumber);
 
             await Task.WhenAll(stateDescriptionTask, validityTask);
 
