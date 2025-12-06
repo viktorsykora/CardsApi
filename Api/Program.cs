@@ -47,11 +47,7 @@ var app = builder.Build();
 app.UseExceptionHandler();
 app.MapHealthChecks("/healthz");
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
-}
+app.MapOpenApi();
 
 app.UseRateLimiter();
 
