@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Application.Contracts
+namespace Application.Contracts.CardValidity
 {
     public class CardValidityResponse
     {

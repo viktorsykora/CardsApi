@@ -1,5 +1,5 @@
 using System.ComponentModel.DataAnnotations;
-using Application.Contracts;
+using Application.Contracts.CardValidity;
 using Application.Features.CardValidity;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;

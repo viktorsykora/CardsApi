@@ -1,5 +1,5 @@
 ﻿using Application.Abstractions;
-using Application.Contracts;
+using Application.Contracts.CardValidity;
 using MediatR;
 
 namespace Application.Features.CardValidity
