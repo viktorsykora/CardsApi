@@ -9,10 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddExceptionHandler<ExceptionHandler>();
 builder.Services.AddProblemDetails();
-
 builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);
-
 builder.Services.AddMediatR(cfg =>
 {
     cfg.RegisterServicesFromAssembly(typeof(Application.Features.CardValidity.CardValidityQuery).Assembly);
@@ -21,7 +19,6 @@ builder.Services.AddMediatR(cfg =>
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 builder.Services.AddHealthChecks();
-
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = "ApiKeyScheme";
@@ -45,14 +42,12 @@ builder.Services.AddRateLimiter(options =>
 var app = builder.Build();
 
 app.UseExceptionHandler();
-app.MapHealthChecks("/healthz");
 
+app.MapHealthChecks("/healthz");
 app.MapOpenApi();
 
 app.UseRateLimiter();
-
 app.UseHttpsRedirection();
-
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
