@@ -6,16 +6,16 @@ namespace Infrastructure.Authentication
 {
     internal class ConfigStoreCredentialsProvider : ICredentialsProvider
     {
-        private readonly IOptions<ApiKeySettings> _options;
+        private readonly IOptionsMonitor<ApiKeySettings> _options;
 
-        public ConfigStoreCredentialsProvider(IOptions<ApiKeySettings> options)
+        public ConfigStoreCredentialsProvider(IOptionsMonitor<ApiKeySettings> options)
         {
             _options = options;
         }        
 
         public bool TryGetCredentials(string apiKey, out string username)
         {
-            return _options.Value.ApiKeys.TryGetValue(apiKey, out username);
+            return _options.CurrentValue.ApiKeys.TryGetValue(apiKey, out username);
         }
     }
 }
