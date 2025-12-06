@@ -1,6 +1,6 @@
 ﻿namespace Infrastructure.Settings
 {
-    public class LitackaApiSettings
+    internal class LitackaApiSettings
     {
         public string ApiUrlBase { get; set; }
     }
