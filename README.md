@@ -16,4 +16,4 @@ http://localhost:8080/healthz
 
 ## Important remarks
 - When built and run with docker the API will listen on HTTP endpoint. This is unsafe in combination with x-api-key authentication. For HTTPS enabled the certificate should be mounted using docker compose.<br>
-- Value of header x-api-key is hardcoded only for simplicity. Proper solution would involve appsettings + secrets injected from secrets manager like Azure KeyVault.
+- Value of header x-api-key is hardcoded for simplicity. Proper solution would involve appsettings + secrets injected from secrets manager like Azure KeyVault.
