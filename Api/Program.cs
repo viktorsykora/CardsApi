@@ -1,9 +1,11 @@
 using System.Threading.RateLimiting;
 using Api.Authentication;
 using Api.Handlers;
+using Api.OpenApi;
 using Application;
 using Infrastructure;
 using Microsoft.AspNetCore.Authentication;
+using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,7 +15,10 @@ builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddExceptionHandler<ExceptionHandler>();
 builder.Services.AddProblemDetails();
 builder.Services.AddControllers();
-builder.Services.AddOpenApi();
+builder.Services.AddOpenApi(options =>
+{
+    options.AddSchemaTransformer<CustomDateSchemaTransformer>();
+});
 builder.Services.AddHealthChecks();
 builder.Services.AddAuthentication(options =>
 {
@@ -41,6 +46,7 @@ app.UseExceptionHandler();
 
 app.MapHealthChecks("/healthz");
 app.MapOpenApi();
+app.MapScalarApiReference();
 
 app.UseRateLimiter();
 app.UseHttpsRedirection();

@@ -8,8 +8,8 @@ docker run -d -p 8080:8080 -p 8081:8081 --name cards-api-container cards-api
 curl -X GET http://localhost:8080/api/cards/123456789/validity \
      -H "x-api-key: 0de0cd7e-573f-446d-83ab-740ed6076200"
 
-## OpenAPI endpoint
-http://localhost:8080/openapi/v1.json
+## Documentation endpoint
+http://localhost:8080/scalar/v1
 
 ## Health endpoint
 http://localhost:8080/healthz
